@@ -1,0 +1,6 @@
+INDEX VERSION 1.127+D:\Training\Spring4Practice\.metadata\.plugins\org.eclipse.jdt.core
+2545009276.index
+678752969.index
+3705130234.index
+1789729775.index
+3909887353.index
