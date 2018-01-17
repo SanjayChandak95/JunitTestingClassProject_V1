@@ -1,5 +1,4 @@
 package com.ing.billing.services;	
-import java.sql.SQLException;
 import java.util.List;
 
 import com.ing.billing.beans.Bill;
@@ -29,8 +28,14 @@ public class BillingServicesImpl implements BillingServices {
 	public long openPostpaidMobileAccount(int customerID, int planID)
 			throws PlanDetailsNotFoundException, CustomerDetailsNotFoundException, BillingServicesDownException {
 		// TODO Auto-generated method stub
-		
-		return 0;
+		Customer customer = BillingDAOServices.getCustomer(customerID);
+		Plan plan = BillingDAOServices.getPlan(planID);
+		Long mobileNumber = (long) 1234567890;
+		PostpaidAccount postpaidAccount = new PostpaidAccount(mobileNumber, plan, customer, null);
+		customer.addPostpaidAccounts(mobileNumber, postpaidAccount);
+		BillingDAOServices.insertPostPaidAccount(customerID, postpaidAccount );
+		BillingDAOServices.insertCustomer(customer);
+		return mobileNumber;
 	}
 
 	@Override
@@ -134,6 +139,7 @@ public class BillingServicesImpl implements BillingServices {
 	@Override
 	public Customer acceptCustomerDetails(Customer customer) throws BillingServicesDownException {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -141,6 +147,7 @@ public class BillingServicesImpl implements BillingServices {
 	public boolean authenticateCustomer(Customer customer)
 			throws CustomerDetailsNotFoundException, BillingServicesDownException {
 		// TODO Auto-generated method stub
+		
 		return false;
 	}
 		
